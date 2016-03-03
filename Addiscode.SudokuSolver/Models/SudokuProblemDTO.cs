@@ -8,6 +8,6 @@ namespace Addiscode.SudokuSolver.Models
 {
     public class SudokuProblemDTO
     {
-        public int[][] SudokuBoard { get; set; }
+        public int[,] SudokuBoard { get; set; }
     }
 }

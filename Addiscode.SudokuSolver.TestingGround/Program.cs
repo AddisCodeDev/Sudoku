@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Addiscode.SudokuSolver.Models;
 
 namespace Addiscode.SudokuSolver.TestingGround
 {
@@ -40,7 +41,7 @@ namespace Addiscode.SudokuSolver.TestingGround
             //board[0, 8] = 3;
             //board[4, 8] = 5;
             //board[5, 8] = 9;
-            var solutionBoards = sudokuSolver.SolveSudokuBoard(board);
+            var solutionBoards = sudokuSolver.Solve(new SudokuProblemDTO {SudokuBoard = board});
         }
     }
 }

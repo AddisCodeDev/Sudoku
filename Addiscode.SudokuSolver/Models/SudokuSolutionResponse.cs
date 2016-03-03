@@ -8,5 +8,7 @@ namespace Addiscode.SudokuSolver.Models
 {
     public class SudokuSolutionResponse
     {
+        public ResponseStatus ResponseStatus { get; set; }
+        public List<int[,]> SolvedBoards { get; set; }
     }
 }

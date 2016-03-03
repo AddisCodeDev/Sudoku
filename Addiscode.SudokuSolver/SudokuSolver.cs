@@ -23,10 +23,20 @@ namespace Addiscode.SudokuSolver
 
         public SudokuSolutionResponse Solve(SudokuProblemDTO problemDto)
         {
-            throw new NotImplementedException();
+            var status = new ResponseStatus();
+            var solvedBoards = new List<int[,]>();
+            try
+            {
+                solvedBoards = SolveSudokuBoard(problemDto.SudokuBoard);
+            }
+            catch (Exception e)
+            {
+                status.AddErrors(e);
+            }
+            return new SudokuSolutionResponse { SolvedBoards = solvedBoards, ResponseStatus = status };
         }
 
-        public List<Location> GetUnfilledBoardLocations(int[,] board)
+        internal List<Location> GetUnfilledBoardLocations(int[,] board)
         {
             var unfilledLocations = new List<Location>();
 
@@ -42,7 +52,7 @@ namespace Addiscode.SudokuSolver
             return unfilledLocations;
         }
 
-        public List<int> GetPosiiblePlaceValues(Location location, int[,] board)
+        internal List<int> GetPosiiblePlaceValues(Location location, int[,] board)
         {
             var possibleValues = new List<int>();
 
@@ -81,7 +91,7 @@ namespace Addiscode.SudokuSolver
             return possibleValues;
         }
 
-        public List<int[,]> SolveSudokuBoard(int[,] startingBoard)
+        internal List<int[,]> SolveSudokuBoard(int[,] startingBoard)
         {
             //setup the board size
             boardSize = GetSudokuBoardSize(startingBoard);
