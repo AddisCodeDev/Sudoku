@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Addiscode.SudokuCore;
+using Addiscode.SudokuCore.Models;
 using Addiscode.SudokuSolver.Models;
 
 namespace Addiscode.SudokuSolver
 {
-    public class SudokuSolver
+    public class SudokuBoardSolver
     {
-        private int boardSize = 0;
-        private int innerBoardSize = 0;
+        private SudokuBoardInfo boardInfo;
         public int maxNumberOfSolutions = 50;
 
-        public SudokuSolver()
+        public SudokuBoardSolver()
         {
         }
-        public SudokuSolver(int requiredNumberOfSolutions)
+        public SudokuBoardSolver(int requiredNumberOfSolutions)
         {
             maxNumberOfSolutions = requiredNumberOfSolutions;
         }
@@ -41,18 +40,21 @@ namespace Addiscode.SudokuSolver
             var unfilledLocations = new List<Location>();
 
             //go throught the board and see where the value is 0 or is unfilled
-            for (int i = 0; i < boardSize; i++)
+            for (int i = 0; i < boardInfo.BoardSize; i++)
             {
-                for (int j = 0; j < boardSize; j++)
+                for (int j = 0; j < boardInfo.BoardSize; j++)
                 {
                     if (board[i, j] == 0)
                         unfilledLocations.Add(new Location { Coloumn = i, Row = j });
                 }
             }
+
+            //shuffle the unfilled location
+
             return unfilledLocations;
         }
 
-        internal List<int> GetPosiiblePlaceValues(Location location, int[,] board)
+        public static List<int> GetPosiiblePlaceValues(Location location, int[,] board, int boardSize, int innerBoardSize)
         {
             var possibleValues = new List<int>();
 
@@ -77,8 +79,8 @@ namespace Addiscode.SudokuSolver
             //go throught the inner ring and remove any necessary values from possible values
             var innerBlockStartingLocation = new Location
             {
-                Coloumn = ((int)(location.Coloumn / innerBoardSize)) * 3,
-                Row = ((int)(location.Row / innerBoardSize)) * 3,
+                Coloumn = ((int)(location.Coloumn / innerBoardSize)) * innerBoardSize,
+                Row = ((int)(location.Row / innerBoardSize)) * innerBoardSize,
             };
             for (int i = 0; i < innerBoardSize; i++)
             {
@@ -94,7 +96,7 @@ namespace Addiscode.SudokuSolver
         internal List<int[,]> SolveSudokuBoard(int[,] startingBoard)
         {
             //setup the board size
-            boardSize = GetSudokuBoardSize(startingBoard);
+            boardInfo = CommonMethods.GetSudokuBoardSize(startingBoard);
 
             //get all the unfilled locations
             var unfilledLocations = GetUnfilledBoardLocations(startingBoard);
@@ -113,11 +115,11 @@ namespace Addiscode.SudokuSolver
                 return;
 
             var currentLocation = unfilledLocations[currentLocationCount];
-            var possibleValues = GetPosiiblePlaceValues(unfilledLocations[currentLocationCount], currentBoard);
+            var possibleValues = GetPosiiblePlaceValues(unfilledLocations[currentLocationCount], currentBoard, boardInfo.BoardSize, boardInfo.InnerBoardSize);
             foreach (var possibleValue in possibleValues)
             {
                 //create an updated board with the new value
-                var updatedBoard = CopyBoard(currentBoard);
+                var updatedBoard = CommonMethods.CopyBoard(currentBoard, boardInfo.BoardSize);
                 updatedBoard[currentLocation.Coloumn, currentLocation.Row] = possibleValue;
 
 
@@ -125,7 +127,7 @@ namespace Addiscode.SudokuSolver
                 if (currentLocationCount < unfilledLocations.Count - 1)
                 {
                     //check to see if the next location has possible Values
-                    var nextLocationsPossibleValues = GetPosiiblePlaceValues(unfilledLocations[currentLocationCount + 1], updatedBoard);
+                    var nextLocationsPossibleValues = GetPosiiblePlaceValues(unfilledLocations[currentLocationCount + 1], updatedBoard, boardInfo.BoardSize, boardInfo.InnerBoardSize);
                     if (nextLocationsPossibleValues.Any())
                         //add the next locations solution to the tree
                         AddLocationsSolutionsToList(unfilledLocations, updatedBoard, solvedBoards, currentLocationCount + 1);
@@ -139,30 +141,6 @@ namespace Addiscode.SudokuSolver
         }
 
 
-        internal int GetSudokuBoardSize(int[,] board)
-        {
-            var boardSizeSquerRoot = Math.Sqrt(board.GetLength(0));
-            innerBoardSize = (int)boardSizeSquerRoot;
-            //check to see if the board is a proper sudoku board (row number == coloumn number)
-            if (board.GetLength(0) != board.GetLength(1) || ((int)(boardSizeSquerRoot * 10) != innerBoardSize * 10))
-                throw new Exception("The board is not a proper sudoku board");
-            return board.GetLength(0);
-        }
 
-        internal int[,] CopyBoard(int[,] board)
-        {
-            //save a copy of the board in a new memory location
-            var copyBoard = new int[boardSize, boardSize];
-
-            //copy over all the values from the previous board
-            for (int i = 0; i < boardSize; i++)
-            {
-                for (int j = 0; j < boardSize; j++)
-                {
-                    copyBoard[i, j] = board[i, j];
-                }
-            }
-            return copyBoard;
-        }
     }
 }

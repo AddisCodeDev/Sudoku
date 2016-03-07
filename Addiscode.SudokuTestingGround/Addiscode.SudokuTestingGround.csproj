@@ -50,6 +50,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Addiscode.SudokuCore\Addiscode.SudokuCore.csproj">
+      <Project>{21d71826-130e-4263-8d32-a60746039ce6}</Project>
+      <Name>Addiscode.SudokuCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Addiscode.SudokuGenerator\Addiscode.SudokuGenerator.csproj">
+      <Project>{b9331c81-ea6c-45c7-929d-605ca7a137f9}</Project>
+      <Name>Addiscode.SudokuGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Addiscode.SudokuSolver\Addiscode.SudokuSolver.csproj">
       <Project>{3e84f6a7-82fd-44f2-841c-dda48d6907f2}</Project>
       <Name>Addiscode.SudokuSolver</Name>

@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addiscode.SudokuCore", "Addiscode.SudokuCore\Addiscode.SudokuCore.csproj", "{21D71826-130E-4263-8D32-A60746039CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addiscode.SudokuGenerator", "Addiscode.SudokuGenerator\Addiscode.SudokuGenerator.csproj", "{B9331C81-EA6C-45C7-929D-605CA7A137F9}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addiscode.SudokuSolver", "Addiscode.SudokuSolver\Addiscode.SudokuSolver.csproj", "{3E84F6A7-82FD-44F2-841C-DDA48D6907F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addiscode.SudokuSolver.TestingGround", "Addiscode.SudokuSolver.TestingGround\Addiscode.SudokuSolver.TestingGround.csproj", "{D555755F-A6D1-45EB-8542-003F3634A43D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addiscode.SudokuTestingGround", "Addiscode.SudokuTestingGround\Addiscode.SudokuTestingGround.csproj", "{D555755F-A6D1-45EB-8542-003F3634A43D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21D71826-130E-4263-8D32-A60746039CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D71826-130E-4263-8D32-A60746039CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D71826-130E-4263-8D32-A60746039CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D71826-130E-4263-8D32-A60746039CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9331C81-EA6C-45C7-929D-605CA7A137F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9331C81-EA6C-45C7-929D-605CA7A137F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9331C81-EA6C-45C7-929D-605CA7A137F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9331C81-EA6C-45C7-929D-605CA7A137F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E84F6A7-82FD-44F2-841C-DDA48D6907F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E84F6A7-82FD-44F2-841C-DDA48D6907F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E84F6A7-82FD-44F2-841C-DDA48D6907F2}.Release|Any CPU.ActiveCfg = Release|Any CPU

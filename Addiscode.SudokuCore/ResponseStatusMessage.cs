@@ -1,4 +1,4 @@
-﻿namespace Addiscode.SudokuSolver
+﻿namespace Addiscode.SudokuCore
 {
     public static class ResponseStatusMessage
     {

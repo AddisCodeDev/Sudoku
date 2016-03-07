@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 
-namespace Addiscode.SudokuSolver
+namespace Addiscode.SudokuCore
 {
     public interface IHasResponseStatus
     {

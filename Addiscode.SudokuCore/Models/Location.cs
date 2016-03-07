@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Addiscode.SudokuSolver.Models
+﻿namespace Addiscode.SudokuCore.Models
 {
     public class Location
     {
@@ -12,7 +6,7 @@ namespace Addiscode.SudokuSolver.Models
         {
         }
         
-        public Location(int row, int coloumn)
+        public Location(int coloumn, int row)
         {
             Row = row;
             Coloumn = coloumn;
