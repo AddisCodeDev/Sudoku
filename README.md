@@ -1,2 +1,2 @@
 # SudokuSolver
-A Sudoku solution provider, built in a generic version, and can be easily turned into  multiple different types of applications.
+A Sudoku game creation library.The solution provides a Sudoku solver and generator, built in a very configurable way.
